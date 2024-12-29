@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM Test Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 </head>
-<body>
-    <div id="root"></div>
-    <script src="app.js"></script>
+<body class="bg-gray-100 min-h-screen p-8">
+    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+        <h1 class="text-2xl font-bold mb-6">DOM Modification Test Page</h1>
+        
+        <!-- List Modification Section -->
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold mb-4">List Modification Test</h2>
+            <button 
+                onclick="addListItem()"
+                class="bg-blue-500 text-white px-4 py-2 rounded mb-4"
+            >
+                Add List Item
+            </button>
+            <ul id="dynamicList" class="space-y-2">
+                <li class="flex items-center justify-between bg-gray-50 p-2 rounded">
+                    Initial item
+                    <button onclick="this.parentElement.remove()" class="text-red-500 hover:text-red-700">×</button>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Modal Test Section -->
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold mb-4">Modal Test</h2>
+            <button 
+                onclick="toggleModal()"
+                class="bg-green-500 text-white px-4 py-2 rounded"
+            >
+                Toggle Modal
+            </button>
+            <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <div class="bg-white p-6 rounded-lg max-w-md w-full mx-4">
+                    <h3 class="text-lg font-semibold mb-4">Test Modal</h3>
+                    <p class="mb-4">This is a test modal that modifies the DOM structure.</p>
+                    <button 
+                        onclick="toggleModal()"
+                        class="bg-red-500 text-white px-4 py-2 rounded"
+                    >
+                        Close Modal
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Text Content Modification -->
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold mb-4">Text Content Test</h2>
+            <p id="modifiableText" class="mb-4">Original text</p>
+            <button 
+                onclick="toggleText()"
+                class="bg-purple-500 text-white px-4 py-2 rounded"
+            >
+                Toggle Text
+            </button>
+        </section>
+
+        <!-- Attribute Modification -->
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold mb-4">Attribute Test</h2>
+            <div 
+                id="modifiableElement"
+                class="text-blue-500"
+                data-test="original"
+            >
+                Element with modifiable attributes
+            </div>
+            <button 
+                onclick="toggleAttributes()"
+                class="mt-4 bg-yellow-500 text-white px-4 py-2 rounded"
+            >
+                Toggle Attributes
+            </button>
+        </section>
+
+        <!-- DOM Structure Display -->
+        <section class="mt-8">
+            <h2 class="text-xl font-semibold mb-4">Current DOM Structure</h2>
+            <pre id="domStructure" class="bg-gray-100 p-4 rounded-lg overflow-auto max-h-96 text-sm"></pre>
+        </section>
+    </div>
+
+    <script>
+        // List Modification
+        function addListItem() {
+            const list = document.getElementById('dynamicList');
+            const itemCount = list.children.length;
+            const newItem = document.createElement('li');
+            newItem.className = 'flex items-center justify-between bg-gray-50 p-2 rounded';
+            newItem.innerHTML = `Item ${itemCount + 1} <button onclick="this.parentElement.remove()" class="text-red-500 hover:text-red-700">×</button>`;
+            list.appendChild(newItem);
+            updateDOMDisplay();
+        }
+
+        // Modal Toggle
+        function toggleModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.toggle('hidden');
+            updateDOMDisplay();
+        }
+
+        // Text Content Toggle
+        function toggleText() {
+            const text = document.getElementById('modifiableText');
+            text.textContent = text.textContent === 'Original text' ? 'Modified text' : 'Original text';
+            updateDOMDisplay();
+        }
+
+        // Attribute Toggle
+        function toggleAttributes() {
+            const element = document.getElementById('modifiableElement');
+            const currentClass = element.className;
+            const currentDataTest = element.getAttribute('data-test');
+            
+            element.className = currentClass === 'text-blue-500' ? 'text-red-500' : 'text-blue-500';
+            element.setAttribute('data-test', currentDataTest === 'original' ? 'modified' : 'original');
+            updateDOMDisplay();
+        }
+
+        // Update DOM Structure Display
+        function updateDOMDisplay() {
+            const domStructure = document.getElementById('domStructure');
+            const mainContent = document.querySelector('.max-w-2xl').cloneNode(true);
+            
+            // Remove the DOM structure display itself from the clone
+            const structureSection = mainContent.querySelector('#domStructure').parentElement;
+            structureSection.remove();
+            
+            domStructure.textContent = mainContent.innerHTML
+                .replace(/\n\s+/g, '\n')  // Clean up whitespace
+                .trim();
+        }
+
+        // Initial DOM structure display
+        updateDOMDisplay();
+    </script>
 </body>
 </html>
