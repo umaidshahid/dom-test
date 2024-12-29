@@ -3,143 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOM Test Page</title>
+    <title>Blog Style Layout</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen p-8">
-    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
-        <h1 class="text-2xl font-bold mb-6">DOM Modification Test Page</h1>
-        
-        <!-- List Modification Section -->
-        <section class="mb-8">
-            <h2 class="text-xl font-semibold mb-4">List Modification Test</h2>
-            <button 
-                onclick="addListItem()"
-                class="bg-blue-500 text-white px-4 py-2 rounded mb-4"
-            >
-                Add List Item
-            </button>
-            <ul id="dynamicList" class="space-y-2">
-                <li class="flex items-center justify-between bg-gray-50 p-2 rounded">
-                    Initial item
-                    <button onclick="this.parentElement.remove()" class="text-red-500 hover:text-red-700">×</button>
-                </li>
-            </ul>
-        </section>
+<body class="bg-slate-50">
+    <header class="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-12">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-bold text-center">Travel Blog</h1>
+            <p class="text-xl text-center mt-4">Exploring the world, one story at a time</p>
+        </div>
+    </header>
 
-        <!-- Modal Test Section -->
-        <section class="mb-8">
-            <h2 class="text-xl font-semibold mb-4">Modal Test</h2>
-            <button 
-                onclick="toggleModal()"
-                class="bg-green-500 text-white px-4 py-2 rounded"
-            >
-                Toggle Modal
-            </button>
-            <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                <div class="bg-white p-6 rounded-lg max-w-md w-full mx-4">
-                    <h3 class="text-lg font-semibold mb-4">Test Modal</h3>
-                    <p class="mb-4">This is a test modal that modifies the DOM structure.</p>
-                    <button 
-                        onclick="toggleModal()"
-                        class="bg-red-500 text-white px-4 py-2 rounded"
+    <nav class="bg-white shadow-lg">
+        <div class="container mx-auto px-4">
+            <ul class="flex justify-center space-x-8 py-4">
+                <li><a href="#" class="text-gray-700 hover:text-purple-600">Home</a></li>
+                <li><a href="#" class="text-gray-700 hover:text-purple-600">Destinations</a></li>
+                <li><a href="#" class="text-gray-700 hover:text-purple-600">About</a></li>
+                <li><a href="#" class="text-gray-700 hover:text-purple-600">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Blog Post 1 -->
+            <article class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-gray-200 h-48"></div>
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold mb-2">Venice Canals</h2>
+                    <p class="text-gray-600 mb-4">Exploring the historic waterways of Venice, Italy. A city frozen in time, where every corner tells a story.</p>
+                    <button class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Read More</button>
+                </div>
+            </article>
+
+            <!-- Blog Post 2 -->
+            <article class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-gray-200 h-48"></div>
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold mb-2">Tokyo Nights</h2>
+                    <p class="text-gray-600 mb-4">Neon lights and street food delights: experiencing the vibrant nightlife of Tokyo's bustling streets.</p>
+                    <button class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Read More</button>
+                </div>
+            </article>
+
+            <!-- Blog Post 3 -->
+            <article class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-gray-200 h-48"></div>
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold mb-2">Sahara Adventure</h2>
+                    <p class="text-gray-600 mb-4">A journey through the endless dunes of the Sahara Desert. Camping under the stars in Morocco.</p>
+                    <button class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Read More</button>
+                </div>
+            </article>
+        </div>
+
+        <section class="mt-12 bg-white rounded-lg shadow-md p-8">
+            <h2 class="text-3xl font-bold mb-6 text-center">Subscribe to Our Newsletter</h2>
+            <form class="max-w-md mx-auto">
+                <div class="flex gap-4">
+                    <input 
+                        type="email" 
+                        placeholder="Enter your email"
+                        class="flex-1 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-600"
                     >
-                        Close Modal
+                    <button class="bg-purple-600 text-white px-6 py-2 rounded hover:bg-purple-700">
+                        Subscribe
                     </button>
                 </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p>&copy; 2024 Travel Blog. All rights reserved.</p>
+                <div class="mt-4 space-x-4">
+                    <a href="#" class="hover:text-purple-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-purple-400">Terms of Service</a>
+                    <a href="#" class="hover:text-purple-400">Contact Us</a>
+                </div>
             </div>
-        </section>
-
-        <!-- Text Content Modification -->
-        <section class="mb-8">
-            <h2 class="text-xl font-semibold mb-4">Text Content Test</h2>
-            <p id="modifiableText" class="mb-4">Original text</p>
-            <button 
-                onclick="toggleText()"
-                class="bg-purple-500 text-white px-4 py-2 rounded"
-            >
-                Toggle Text
-            </button>
-        </section>
-
-        <!-- Attribute Modification -->
-        <section class="mb-8">
-            <h2 class="text-xl font-semibold mb-4">Attribute Test</h2>
-            <div 
-                id="modifiableElement"
-                class="text-blue-500"
-                data-test="original"
-            >
-                Element with modifiable attributes
-            </div>
-            <button 
-                onclick="toggleAttributes()"
-                class="mt-4 bg-yellow-500 text-white px-4 py-2 rounded"
-            >
-                Toggle Attributes
-            </button>
-        </section>
-
-        <!-- DOM Structure Display -->
-        <section class="mt-8">
-            <h2 class="text-xl font-semibold mb-4">Current DOM Structure</h2>
-            <pre id="domStructure" class="bg-gray-100 p-4 rounded-lg overflow-auto max-h-96 text-sm"></pre>
-        </section>
-    </div>
-
-    <script>
-        // List Modification
-        function addListItem() {
-            const list = document.getElementById('dynamicList');
-            const itemCount = list.children.length;
-            const newItem = document.createElement('li');
-            newItem.className = 'flex items-center justify-between bg-gray-50 p-2 rounded';
-            newItem.innerHTML = `Item ${itemCount + 1} <button onclick="this.parentElement.remove()" class="text-red-500 hover:text-red-700">×</button>`;
-            list.appendChild(newItem);
-            updateDOMDisplay();
-        }
-
-        // Modal Toggle
-        function toggleModal() {
-            const modal = document.getElementById('modal');
-            modal.classList.toggle('hidden');
-            updateDOMDisplay();
-        }
-
-        // Text Content Toggle
-        function toggleText() {
-            const text = document.getElementById('modifiableText');
-            text.textContent = text.textContent === 'Original text' ? 'Modified text' : 'Original text';
-            updateDOMDisplay();
-        }
-
-        // Attribute Toggle
-        function toggleAttributes() {
-            const element = document.getElementById('modifiableElement');
-            const currentClass = element.className;
-            const currentDataTest = element.getAttribute('data-test');
-            
-            element.className = currentClass === 'text-blue-500' ? 'text-red-500' : 'text-blue-500';
-            element.setAttribute('data-test', currentDataTest === 'original' ? 'modified' : 'original');
-            updateDOMDisplay();
-        }
-
-        // Update DOM Structure Display
-        function updateDOMDisplay() {
-            const domStructure = document.getElementById('domStructure');
-            const mainContent = document.querySelector('.max-w-2xl').cloneNode(true);
-            
-            // Remove the DOM structure display itself from the clone
-            const structureSection = mainContent.querySelector('#domStructure').parentElement;
-            structureSection.remove();
-            
-            domStructure.textContent = mainContent.innerHTML
-                .replace(/\n\s+/g, '\n')  // Clean up whitespace
-                .trim();
-        }
-
-        // Initial DOM structure display
-        updateDOMDisplay();
-    </script>
+        </div>
+    </footer>
 </body>
 </html>
